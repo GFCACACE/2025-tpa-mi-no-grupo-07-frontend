@@ -69,7 +69,7 @@ header {
     background-color: #2980b9;
 }
 
-.login-container {
+.register-container {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -78,20 +78,30 @@ header {
     padding: 40px 20px;
 }
 
-.login-box {
-    background-color: #D1C7C7; /* Color fondo */
+.register-box {
+    background-color:#D1C7C7; /* Color fondo */
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     padding: 40px;
     width: 100%;
-    max-width: 450px;
+    max-width: 500px;
 }
 
-.login-title {
+.register-title {
     text-align: center;
     color: #35327D;
     margin-bottom: 30px;
     font-size: 1.8rem;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.form-row .form-group {
+    flex: 1;
 }
 
 .form-group {
@@ -119,7 +129,7 @@ header {
     outline: none;
 }
 
-.login-button {
+.register-button {
     width: 100%;
     padding: 12px;
     background-color: #35327D;
@@ -132,22 +142,22 @@ header {
     margin-top: 10px;
 }
 
-.login-button:hover {
+.register-button:hover {
     background-color: #2a2764;
 }
 
-.register-link {
+.login-link {
     text-align: center;
     margin-top: 25px;
     color: #555;
 }
 
-.register-link a {
+.login-link a {
     color: #3498db;
     text-decoration: none;
 }
 
-.register-link a:hover {
+.login-link a:hover {
     text-decoration: underline;
 }
 
@@ -193,8 +203,13 @@ footer {
         justify-content: center;
     }
     
-    .login-box {
+    .register-box {
         padding: 25px;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 0;
     }
     
     .contact-info {
