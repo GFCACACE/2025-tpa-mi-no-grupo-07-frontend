@@ -1,0 +1,262 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #E8E6F2;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #35327D;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex-wrap: nowrap;
+}
+
+.header-left h1 {
+    color: white;
+    margin: 0;
+    font-size: 24px;
+}
+
+.header-left h2 {
+    color: white;
+    margin: 0;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.header-right {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.user-profile-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+}
+
+.profile-pic-small {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.logout-btn {
+    padding: 8px 15px;
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ESTILOS CORREGIDOS PARA PERFIL */
+.profile-container {
+    flex: 1;
+    padding: 30px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.profile-content {
+    width: 100%;
+    max-width: 800px;
+}
+
+.main-title {
+    color: #35327D;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.profile-card {
+    display: flex;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 40px;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.profile-info-section {
+    flex: 1;
+}
+
+.info-group {
+    margin-bottom: 25px;
+}
+
+.info-group strong {
+    display: block;
+    color: #35327D;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+.info-value {
+    font-size: 1.1rem;
+    color: #333;
+    padding: 8px 0;
+}
+
+.separator {
+    width: 2px;
+    background-color: #e0e0e0;
+    margin: 0 20px;
+    align-self: stretch;
+}
+
+.profile-image-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-image-container {
+    text-align: center;
+}
+
+.profile-image {
+    width: 180px;
+    height: 180px;
+    border-radius: 10px;
+    object-fit: cover;
+    border: 3px solid #e0e0e0;
+    margin-bottom: 20px;
+}
+
+.change-photo-btn {
+    padding: 10px 20px;
+    background-color: #35327D;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.change-photo-btn:hover {
+    background-color: #2a2764;
+}
+
+footer {
+    background-color: #35327D;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.footer-title {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 15px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .profile-card {
+        flex-direction: column;
+        padding: 25px;
+        gap: 30px;
+    }
+    
+    .separator {
+        width: 100%;
+        height: 2px;
+        margin: 15px 0;
+    }
+    
+    .user-profile-header span {
+        display: none;
+    }
+    
+    .profile-image {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .header-right {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-title {
+        font-size: 1.5rem;
+    }
+    
+    .info-group strong {
+        font-size: 1rem;
+    }
+    
+    .info-value {
+        font-size: 1rem;
+    }
+    
+    .change-photo-btn {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+    
+    header {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .header-right {
+        justify-content: center;
+    }
+}
