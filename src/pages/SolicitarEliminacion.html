@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meta Mapa - Solicitar Eliminación</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/solicitarEliminacion.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-left">
+            <h1>Meta Mapa</h1>
+            <h2>Sistema de gestión de mapeos colaborativos</h2>
+        </div>
+        <div class="header-right">
+            <div class="user-profile-header">
+                <img src="../assets/images//Attack-on-Titan-in-real-life-4.png" alt="Foto de perfil" class="profile-pic-small">
+                <span>Usuario</span>
+            </div>
+            <button class="logout-btn"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button>
+        </div>
+    </header>
+    
+    <div class="deletion-container">
+        <div class="deletion-content">
+            <div class="deletion-header">
+                <h2 class="deletion-title">Solicitar Eliminación</h2>
+                <p class="deletion-subtitle">Solicita la eliminación de un hecho del sistema</p>
+            </div>
+            
+            <div class="deletion-form">
+                <div class="fact-preview">
+                    <h3 class="fact-title">Hecho a eliminar</h3>
+                    <div class="fact-card">
+                        <div class="fact-header">
+                            <h4 class="fact-name">Incidente en zona céntrica</h4>
+                            <span class="fact-status status-pendiente">Pendiente</span>
+                        </div>
+                        <div class="fact-details">
+                            <div class="fact-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Avenida Central 456, Ciudad</span>
+                            </div>
+                            <div class="fact-date">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>20 de Octubre, 2023</span>
+                            </div>
+                        </div>
+                        <p class="fact-description">
+                            En horas de la tarde, se registró un hecho que llamó la atención de vecinos y transeúntes de la zona. 
+                            Según los primeros reportes, el incidente involucró a varias personas y generó un despliegue inmediato 
+                            de personal de seguridad. Testigos relataron que la situación se desarrolló de forma repentina y provoco 
+                            momentos de tensión. Las autoridades trabajan para esclarecer lo ocurrido y determinar las circunstancias exactas.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="deletion-reason">
+                    <h3 class="reason-title">Motivo de eliminación</h3>
+                    <div class="reason-options">
+                        <div class="reason-option">
+                            <input type="checkbox" id="reason1" name="reason" value="informacion_incorrecta">
+                            <label for="reason1">Información incorrecta o desactualizada</label>
+                        </div>
+                        <div class="reason-option">
+                            <input type="checkbox" id="reason2" name="reason" value="contenido_inapropiado">
+                            <label for="reason2">Contenido inapropiado u ofensivo</label>
+                        </div>
+                        <div class="reason-option">
+                            <input type="checkbox" id="reason3" name="reason" value="duplicado">
+                            <label for="reason3">Hecho duplicado</label>
+                        </div>
+                        <div class="reason-option">
+                            <input type="checkbox" id="reason4" name="reason" value="fuente_no_confiable">
+                            <label for="reason4">Fuente no confiable</label>
+                        </div>
+                        <div class="reason-option">
+                            <input type="checkbox" id="reason5" name="reason" value="violacion_privacidad">
+                            <label for="reason5">Violación de privacidad</label>
+                        </div>
+                        <div class="reason-option">
+                            <input type="checkbox" id="reason6" name="reason" value="otro">
+                            <label for="reason6">Otro motivo</label>
+                        </div>
+                    </div>
+                    
+                    <div class="reason-description">
+                        <label for="deletion-details">Explicación adicional (opcional)</label>
+                        <textarea id="deletion-details" placeholder="Proporciona más detalles sobre por qué solicitas la eliminación de este hecho..."></textarea>
+                    </div>
+                </div>
+                
+                <div class="multimedia-section">
+                    <h3 class="multimedia-title">Contenido multimedia (fotos y videos)</h3>
+                    <p class="multimedia-subtitle">Si dispones de material multimedia que respalde tu solicitud, puedes adjuntarlo aquí</p>
+                    
+                    <div class="multimedia-upload">
+                        <div class="upload-area" id="uploadArea">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Arrastra tus archivos aquí o <span class="browse-link">examínalos</span></p>
+                            <input type="file" id="fileInput" multiple accept="image/*,video/*" style="display: none;">
+                        </div>
+                        
+                        <div class="uploaded-files" id="uploadedFiles">
+                            <!-- Los archivos subidos aparecerán aquí -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button class="cancel-btn">
+                        <i class="fas fa-times"></i> Cancelar
+                    </button>
+                    <button class="submit-deletion-btn">
+                        <i class="fas fa-paper-plane"></i> Enviar solicitud
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <p class="footer-title">¿Tenés dudas? Contactate con nosotros.</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>contacto@metamapa.org</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+54 11 1234 5678</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+   <!--TODOS LOS SCRIPS SON DE EJEMPLO, PARA QUE SE VEAN COMO FUNCIONAN. NO VAN A QUEDAR ACA NI SER ASI-->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const uploadArea = document.getElementById('uploadArea');
+            const fileInput = document.getElementById('fileInput');
+            const uploadedFiles = document.getElementById('uploadedFiles');
+            const browseLink = document.querySelector('.browse-link');
+            
+            // Abrir el selector de archivos al hacer clic en el área de carga
+            uploadArea.addEventListener('click', function(e) {
+                // Evitar que se abra dos veces si se hace clic en el enlace "examinar"
+                if (!e.target.classList.contains('browse-link')) {
+                    fileInput.click();
+                }
+            });
+            
+            // Abrir el selector de archivos al hacer clic en "examinar"
+            browseLink.addEventListener('click', function(e) {
+                e.stopPropagation(); // Evitar que se dispare el evento del área de carga
+                fileInput.click();
+            });
+            
+            // Manejar la selección de archivos
+            fileInput.addEventListener('change', function() {
+                handleFiles(this.files);
+            });
+            
+            // Permitir arrastrar y soltar archivos
+            uploadArea.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                uploadArea.classList.add('dragover');
+            });
+            
+            uploadArea.addEventListener('dragleave', function() {
+                uploadArea.classList.remove('dragover');
+            });
+            
+            uploadArea.addEventListener('drop', function(e) {
+                e.preventDefault();
+                uploadArea.classList.remove('dragover');
+                
+                if (e.dataTransfer.files.length) {
+                    handleFiles(e.dataTransfer.files);
+                }
+            });
+            
+            // Función para manejar los archivos seleccionados
+            function handleFiles(files) {
+                for (let i = 0; i < files.length; i++) {
+                    const file = files[i];
+                    const fileElement = createFileElement(file);
+                    uploadedFiles.appendChild(fileElement);
+                }
+            }
+            
+            // Función para crear un elemento de archivo
+            function createFileElement(file) {
+                const fileElement = document.createElement('div');
+                fileElement.className = 'uploaded-file';
+                
+                const fileIcon = document.createElement('i');
+                fileIcon.className = 'fas fa-file';
+                
+                // Determinar el icono según el tipo de archivo
+                if (file.type.startsWith('image/')) {
+                    fileIcon.className = 'fas fa-file-image';
+                } else if (file.type.startsWith('video/')) {
+                    fileIcon.className = 'fas fa-file-video';
+                }
+                
+                const fileName = document.createElement('span');
+                fileName.className = 'file-name';
+                fileName.textContent = file.name;
+                
+                const fileSize = document.createElement('span');
+                fileSize.className = 'file-size';
+                fileSize.textContent = formatFileSize(file.size);
+                
+                const removeBtn = document.createElement('button');
+                removeBtn.className = 'remove-file';
+                removeBtn.innerHTML = '<i class="fas fa-times"></i>';
+                removeBtn.addEventListener('click', function() {
+                    fileElement.remove();
+                });
+                
+                fileElement.appendChild(fileIcon);
+                fileElement.appendChild(fileName);
+                fileElement.appendChild(fileSize);
+                fileElement.appendChild(removeBtn);
+                
+                return fileElement;
+            }
+            
+            // Función para formatear el tamaño del archivo
+            function formatFileSize(bytes) {
+                if (bytes === 0) return '0 Bytes';
+                
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+            }
+            
+            // Manejar el envío del formulario
+            const submitBtn = document.querySelector('.submit-deletion-btn');
+            submitBtn.addEventListener('click', function() {
+                const selectedReasons = document.querySelectorAll('input[name="reason"]:checked');
+                
+                if (selectedReasons.length === 0) {
+                    alert('Por favor, selecciona al menos un motivo para la eliminación.');
+                    return;
+                }
+                
+                // Simular envío exitoso
+                alert('Tu solicitud de eliminación ha sido enviada correctamente. Será revisada por nuestro equipo.');
+                
+                // Redirigir después de enviar (simulado)
+                setTimeout(function() {
+                    window.location.href = 'navegarHechos.html';
+                }, 1500);
+            });
+            
+            // Manejar cancelación
+            const cancelBtn = document.querySelector('.cancel-btn');
+            cancelBtn.addEventListener('click', function() {
+                if (confirm('¿Estás seguro de que deseas cancelar? Los cambios no guardados se perderán.')) {
+                    window.location.href = 'navegarHechos.html';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
