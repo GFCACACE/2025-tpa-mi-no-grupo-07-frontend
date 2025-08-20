@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meta Mapa - Navegar Colecciones</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/navegarColecciones.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-left">
+            <h1>Meta Mapa</h1>
+            <h2>Sistema de gestión de mapeos colaborativos</h2>
+        </div>
+        <div class="header-right">
+            <div class="user-profile-header">
+                <img src="../assets/images/profile-picture.jpg" alt="Foto de perfil" class="profile-pic-small">
+                <span>Usuario</span>
+            </div>
+            <button class="logout-btn"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button>
+        </div>
+    </header>
+    
+    <div class="collections-container">
+        <div class="collections-content">
+            <div class="collections-header">
+                <h2 class="collections-title">Colecciones Disponibles</h2>
+                <p class="collections-subtitle">Explora y descubre todas las colecciones del sistema</p>
+                
+                <div class="filters-section">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Buscar colecciones..." class="search-input">
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="categoria-filter">Categoría:</label>
+                        <select id="categoria-filter" class="filter-select">
+                            <option value="">Todas las categorías</option>
+                            <option value="infraestructura">Infraestructura</option>
+                            <option value="transporte">Transporte</option>
+                            <option value="salud">Salud</option>
+                            <option value="medioambiente">Medio Ambiente</option>
+                            <option value="etc">Etc</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="estado-filter">Filtro 1:</label>
+                        <select id="estado-filter" class="filter-select">
+                            <option value="">Todos</option>
+                            <option value="activo">Activo</option>
+                            <option value="inactivo">Inactivo</option>
+                            <option value="mantenimiento">En mantenimiento</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="fecha-filter">Filtro 2:</label>
+                        <select id="fecha-filter" class="filter-select">
+                            <option value="">Todos</option>
+                            <option value="diaria">Diaria</option>
+                            <option value="semanal">Semanal</option>
+                            <option value="quincenal">Quincenal</option>
+                            <option value="mensual">Mensual</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="popularidad-filter">Filtro 3:</label>
+                        <select id="popularidad-filter" class="filter-select">
+                            <option value="">Todos</option>
+                            <option value="alta">Alta</option>
+                            <option value="media">Media</option>
+                            <option value="baja">Baja</option>
+                        </select>
+                    </div>
+                    
+                    <button class="clear-filters-btn">
+                        <i class="fas fa-times"></i> Limpiar
+                    </button>
+                </div>
+            </div>
+            
+            <div class="collections-grid">
+                <!-- Colección 1 -->
+                <div class="collection-card" data-categoria="infraestructura" data-estado="activo" data-fecha="diaria" data-popularidad="alta">
+                    <div class="collection-icon">
+                        <img src="../assets/icons/infraestructura.svg" alt="Infraestructura" class="icon-img">
+                    </div>
+                    <h3 class="collection-name">Infraestructura Urbana</h3>
+                    <p class="collection-description">Reportes y actualizaciones sobre infraestructura de la ciudad incluyendo calles, semáforos, iluminación pública y espacios urbanos.</p>
+                    <div class="collection-stats">
+                        <div class="stat">
+                            <i class="fas fa-bolt"></i>
+                            <span>Actualización: Diaria</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>125 hechos</span>
+                        </div>
+                    </div>
+                    <button class="view-facts-btn">
+                        <i class="fas fa-eye"></i> Ver Hechos
+                    </button>
+                </div>
+                
+                <!-- Colección 2 -->
+                <div class="collection-card" data-categoria="cultura" data-estado="activo" data-fecha="semanal" data-popularidad="media">
+                    <div class="collection-icon">
+                        <img src="../assets/icons/cultura.svg" alt="Cultura" class="icon-img">
+                    </div>
+                    <h3 class="collection-name">Cultura y Arte</h3>
+                    <p class="collection-description">Eventos culturales, exposiciones artísticas, talleres comunitarios y puntos de interés cultural en toda la ciudad.</p>
+                    <div class="collection-stats">
+                        <div class="stat">
+                            <i class="fas fa-bolt"></i>
+                            <span>Actualización: Semanal</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>78 hechos</span>
+                        </div>
+                    </div>
+                    <button class="view-facts-btn">
+                        <i class="fas fa-eye"></i> Ver Hechos
+                    </button>
+                </div>
+                
+                <!-- Colección 3 -->
+                <div class="collection-card" data-categoria="transporte" data-estado="activo" data-fecha="diaria" data-popularidad="alta">
+                    <div class="collection-icon">
+                        <img src="../assets/icons/transporte.svg" alt="Transporte" class="icon-img">
+                    </div>
+                    <h3 class="collection-name">Transporte Público</h3>
+                    <p class="collection-description">Información actualizada sobre rutas de transporte, paradas, horarios y estado del servicio de transporte público.</p>
+                    <div class="collection-stats">
+                        <div class="stat">
+                            <i class="fas fa-bolt"></i>
+                            <span>Actualización: En tiempo real</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>203 hechos</span>
+                        </div>
+                    </div>
+                    <button class="view-facts-btn">
+                        <i class="fas fa-eye"></i> Ver Hechos
+                    </button>
+                </div>
+                
+                <!-- Colección 4 -->
+                <div class="collection-card" data-categoria="educacion" data-estado="activo" data-fecha="mensual" data-popularidad="media">
+                    <div class="collection-icon">
+                        <img src="../assets/icons/educacion.svg" alt="Educación" class="icon-img">
+                    </div>
+                    <h3 class="collection-name">Educación</h3>
+                    <p class="collection-description">Instituciones educativas, programas de formación, talleres educativos y recursos de aprendizaje disponibles.</p>
+                    <div class="collection-stats">
+                        <div class="stat">
+                            <i class="fas fa-bolt"></i>
+                            <span>Actualización: Mensual</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>92 hechos</span>
+                        </div>
+                    </div>
+                    <button class="view-facts-btn">
+                        <i class="fas fa-eye"></i> Ver Hechos
+                    </button>
+                </div>
+                
+                <!-- Colección 5 -->
+                <div class="collection-card" data-categoria="salud" data-estado="activo" data-fecha="quincenal" data-popularidad="alta">
+                    <div class="collection-icon">
+                        <img src="../assets/icons/salud.svg" alt="Salud" class="icon-img">
+                    </div>
+                    <h3 class="collection-name">Salud y Bienestar</h3>
+                    <p class="collection-description">Centros de salud, servicios médicos, programas de bienestar y recursos de salud comunitaria disponibles.</p>
+                    <div class="collection-stats">
+                        <div class="stat">
+                            <i class="fas fa-bolt"></i>
+                            <span>Actualización: Quincenal</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>67 hechos</span>
+                        </div>
+                    </div>
+                    <button class="view-facts-btn">
+                        <i class="fas fa-eye"></i> Ver Hechos
+                    </button>
+                </div>
+                
+                <!-- Colección 6 -->
+                <div class="collection-card" data-categoria="medioambiente" data-estado="activo" data-fecha="mensual" data-popularidad="baja">
+                    <div class="collection-icon">
+                        <img src="../assets/icons/medioambiente.svg" alt="Medio Ambiente" class="icon-img">
+                    </div>
+                    <h3 class="collection-name">Medio Ambiente</h3>
+                    <p class="collection-description">Áreas verdes, iniciativas ecológicas, puntos de reciclaje y proyectos ambientales en la comunidad.</p>
+                    <div class="collection-stats">
+                        <div class="stat">
+                            <i class="fas fa-bolt"></i>
+                            <span>Actualización: Mensual</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>54 hechos</span>
+                        </div>
+                    </div>
+                    <button class="view-facts-btn">
+                        <i class="fas fa-eye"></i> Ver Hechos
+                    </button>
+                </div>
+            </div>
+            
+            <div class="pagination">
+                <button class="page-btn disabled">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <button class="page-btn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <p class="footer-title">¿Tenés dudas? Contactate con nosotros.</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>contacto@metamapa.org</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+54 11 1234 5678</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elementos del DOM
+            const searchInput = document.querySelector('.search-input');
+            const categoriaFilter = document.getElementById('categoria-filter');
+            const estadoFilter = document.getElementById('estado-filter');
+            const fechaFilter = document.getElementById('fecha-filter');
+            const popularidadFilter = document.getElementById('popularidad-filter');
+            const clearFiltersBtn = document.querySelector('.clear-filters-btn');
+            const collectionCards = document.querySelectorAll('.collection-card');
+            const viewButtons = document.querySelectorAll('.view-facts-btn');
+
+            // Función para aplicar filtros
+            function applyFilters() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const selectedCategoria = categoriaFilter.value;
+                const selectedEstado = estadoFilter.value;
+                const selectedFecha = fechaFilter.value;
+                const selectedPopularidad = popularidadFilter.value;
+
+                collectionCards.forEach(card => {
+                    const matchesSearch = card.querySelector('.collection-name').textContent.toLowerCase().includes(searchTerm) ||
+                                         card.querySelector('.collection-description').textContent.toLowerCase().includes(searchTerm);
+                    
+                    const matchesCategoria = !selectedCategoria || card.getAttribute('data-categoria') === selectedCategoria;
+                    const matchesEstado = !selectedEstado || card.getAttribute('data-estado') === selectedEstado;
+                    const matchesFecha = !selectedFecha || card.getAttribute('data-fecha') === selectedFecha;
+                    const matchesPopularidad = !selectedPopularidad || card.getAttribute('data-popularidad') === selectedPopularidad;
+
+                    if (matchesSearch && matchesCategoria && matchesEstado && matchesFecha && matchesPopularidad) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+
+            // Event listeners para filtros
+            searchInput.addEventListener('input', applyFilters);
+            categoriaFilter.addEventListener('change', applyFilters);
+            estadoFilter.addEventListener('change', applyFilters);
+            fechaFilter.addEventListener('change', applyFilters);
+            popularidadFilter.addEventListener('change', applyFilters);
+
+            // Limpiar filtros
+            clearFiltersBtn.addEventListener('click', function() {
+                searchInput.value = '';
+                categoriaFilter.value = '';
+                estadoFilter.value = '';
+                fechaFilter.value = '';
+                popularidadFilter.value = '';
+                applyFilters();
+            });
+
+            // Botones Ver Hechos
+            viewButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const collectionName = this.closest('.collection-card').querySelector('.collection-name').textContent;
+                    alert(`Redirigiendo a los hechos de: ${collectionName}`);
+                });
+            });
+
+            // Cargar iconos alternativos si los SVG no están disponibles
+            document.querySelectorAll('.icon-img').forEach(img => {
+                img.addEventListener('error', function() {
+                    this.src = '../assets/icons/default.svg';
+                    this.alt = 'Icono por defecto';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
