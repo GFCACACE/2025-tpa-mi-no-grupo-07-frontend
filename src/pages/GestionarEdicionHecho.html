@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meta Mapa - Gestionar Edición</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/GestionarEdicionHecho.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-left">
+            <h1>Meta Mapa</h1>
+            <h2>Sistema de gestión de mapeos colaborativos</h2>
+        </div>
+        <div class="header-right">
+            <div class="user-profile-header">
+                <img src="../assets/images/Attack-on-Titan-in-real-life-4.png" alt="Foto de perfil" class="profile-pic-small">
+                <span>Hajime Isayama</span>
+            </div>
+            <button class="logout-btn"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button>
+        </div>
+    </header>
+    
+    <div class="edit-container">
+        <div class="edit-content">
+            <div class="edit-header">
+                <h2 class="edit-title">Gestionar Edición</h2>
+                <p class="edit-subtitle">Modifica los detalles del hecho pendiente de aprobación</p>
+                
+                <div class="request-info">
+                    <p><strong>Solicitud:</strong> Solicitud 3 - Usuario 2</p>
+                    <p><strong>Fecha de envío:</strong> 14/11/2023 09:15</p>
+                    <p><strong>Estado actual:</strong> <span class="status-pending">Pendiente de revisión</span></p>
+                </div>
+            </div>
+            
+            <div class="separator"></div>
+            
+            <form class="edit-form">
+                <div class="form-group">
+                    <label for="titulo">Título del Hecho *</label>
+                    <input type="text" id="titulo" name="titulo" value="Nuevo punto de interés cultural registrado" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="descripcion">Descripción *</label>
+                    <textarea id="descripcion" name="descripcion" rows="5" required>I’m announcing our final operation! all troops, line up! We will be doing a cavalry charge. Our goal, to rush the beast titan. Of course we will be making ourselves ideal targets, so we’ll wait he’s ready to throw and fire our smoke signals together, That should reduce his accuracy somewhat. While we’re acting as a decoy, Captain Levi will kill the beast titan That is our plan!”
+(Floch crying)
+“Standing and waiting just means we’ll be showered by more boulders. Get ready on the double! No matter what dreams or hopes you had... No matter how blessed a life you’ve lived... It’s all the same if you’re shattered by rocks. Everyone will die someday. Does this mean life is meaningless? Was there even any meaning in us being born into this world? Would we say that of our fallen comrades? Their lives...were they meaningless? NO, THEY WERE NOT! It’s us who gives meaning to our comrades lives! The brave fallen! The anguished fallen! The ones who will remember them...are us, the living! We die trusting the living who follow to find meaning in our lives! That is the sole method in which we can rebel against this cruel world!"</textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="categoria">Categoría *</label>
+                    <select id="categoria" name="categoria" required>
+                        <option value="">Seleccionar categoría</option>
+                        <option value="terremotos" selected>Terremotos</option>
+                        <option value="huracanes">Huracanes</option>
+                        <option value="inundaciones">Inundaciones</option>
+                        <option value="salud">Salud</option>
+                        <option value="transporte">Transporte</option>
+                        <option value="infraestructura">Infraestructura</option>
+                        <option value="medioambiente">Medio Ambiente</option>
+                        <option value="desastresNaturales">Desastre Natural</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="ubicacion">Ubicación</label>
+                    <input type="text" id="ubicacion" name="ubicacion" value="Av. Santa Fe 3250, Palermo">
+                </div>
+                
+                <div class="form-group">
+                    <label for="observaciones">Observaciones Internas</label>
+                    <textarea id="observaciones" name="observaciones" rows="3" placeholder="Notas o comentarios para el equipo de revisión">Observaciones ---------//////---------.</textarea>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="cancel-btn">
+                        <i class="fas fa-times"></i> Cancelar
+                    </button>
+                    <button type="button" class="save-btn">
+                        <i class="fas fa-save"></i> Guardar Cambios
+                    </button>
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-check-double"></i> Aprobar y Publicar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <p class="footer-title">¿Tenés dudas? Contactate con nosotros.</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>contacto@metamapa.org</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+54 11 1234 5678</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Simular pre-carga de datos
+            const saveBtn = document.querySelector('.save-btn');
+            const submitBtn = document.querySelector('.submit-btn');
+            
+            saveBtn.addEventListener('click', function() {
+                alert('Cambios guardados correctamente. El hecho permanece en estado pendiente.');
+            });
+            
+            submitBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                if(confirm('¿Estás seguro de que deseas aprobar y publicar este hecho?')) {
+                    alert('Hecho aprobado y publicado exitosamente.');
+                    // Aquí iría la lógica para enviar el formulario
+                }
+            });
+        });
+    </script>
+</body>
+</html>
