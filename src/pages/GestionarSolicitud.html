@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meta Mapa - Gestionar Solicitud</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/gestionarSolicitud.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-left">
+            <h1>Meta Mapa</h1>
+            <h2>Sistema de gestión de mapeos colaborativos</h2>
+        </div>
+        <div class="header-right">
+            <div class="user-profile-header">
+                <img src="../assets/images/Attack-on-Titan-in-real-life-4.png" alt="Foto de perfil" class="profile-pic-small">
+                <span>Administrador</span>
+            </div>
+            <button class="logout-btn"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button>
+        </div>
+    </header>
+    
+    <div class="request-container">
+        <div class="request-content">
+            <div class="request-header">
+                <h2 class="request-title">GESTIÓN: APROBAR/RECHAZAR SOLICITUDES</h2>
+                
+                <div class="request-info">
+                    <div class="info-item">
+                        <strong>ID:</strong> 123456789
+                    </div>
+                    <div class="info-item">
+                        <strong>Solicitud de:</strong> Juanito26788
+                    </div>
+                    <div class="info-item">
+                        <strong>Fecha:</strong> 15/11/2023 14:30
+                    </div>
+                    <div class="info-item">
+                        <strong>Estado:</strong> <span class="status-pending">Pendiente</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="separator"></div>
+            
+            <div class="request-details">
+                <h3>Descripción de la Solicitud</h3>
+                <div class="description-box">
+                    <p>Un hecho de estas características se presenta como un acontecimiento imprevisto que irrumpe en la vida cotidiana de una comunidad, generando consecuencias tanto materiales como sociales. Puede tratarse de una inundación, una tormenta de gran magnitud, un derrumbe o cualquier otro fenómeno que altere significativamente el entorno. Estos sucesos suelen poner a prueba la capacidad de respuesta de las autoridades y de la población, ya que implican riesgos para la seguridad de las personas, daños en infraestructuras, interrupciones en servicios esenciales y la necesidad de adoptar medidas preventivas y de emergencia. La magnitud del hecho puede variar según su duración, intensidad y el nivel de preparación existente, pero en todos los casos deja huellas que demandan un proceso de recuperación y reflexión sobre las vulnerabilidades expuestas.</p>
+                </div>
+                
+                <div class="additional-info">
+                    <h4>Información Adicional</h4>
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <strong>Categoría propuesta:</strong> Categoría generica
+                        </div>
+                        <div class="info-card">
+                            <strong>Ubicación:</strong> Calle Principal 1234
+                        </div>
+                    
+                        <div class="info-card">
+                            <strong>Archivos adjuntos:</strong> 3 imágenes
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="separator"></div>
+            
+            <div class="action-section">
+                <h3>Acciones</h3>
+                <div class="action-buttons">
+                    <button class="accept-btn">
+                        <i class="fas fa-check-circle"></i> Aceptar
+                    </button>
+                    <button class="reject-btn">
+                        <i class="fas fa-times-circle"></i> Rechazar
+                    </button>
+                </div>
+                
+                <div class="feedback-section">
+                    <label for="comentario">Comentario (opcional):</label>
+                    <textarea id="comentario" placeholder="Agregar comentario o feedback para el solicitante..." rows="3"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <p class="footer-title">¿Tenés dudas? Contactate con nosotros.</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>contacto@metamapa.org</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+54 11 1234 5678</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const acceptBtn = document.querySelector('.accept-btn');
+            const rejectBtn = document.querySelector('.reject-btn');
+            
+            acceptBtn.addEventListener('click', function() {
+                if(confirm('¿Estás seguro de que deseas ACEPTAR esta solicitud?')) {
+                    alert('Solicitud aceptada correctamente.');
+                    // Lógica para aceptar la solicitud
+                }
+            });
+            
+            rejectBtn.addEventListener('click', function() {
+                if(confirm('¿Estás seguro de que deseas RECHAZAR esta solicitud?')) {
+                    alert('Solicitud rechazada correctamente.');
+                    // Lógica para rechazar la solicitud
+                }
+            });
+        });
+    </script>
+</body>
+</html>
