@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meta Mapa - Navegar Hechos</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/NavegarHechos.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-left">
+            <h1>Meta Mapa</h1>
+            <h2>Sistema de gestión de mapeos colaborativos</h2>
+        </div>
+        <div class="header-right">
+            <div class="user-profile-header">
+                <img src="../assets/images/Attack-on-Titan-in-real-life-4.png" alt="Foto de perfil" class="profile-pic-small">
+                <span>Usuario</span>
+            </div>
+            <button class="logout-btn"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button>
+        </div>
+    </header>
+    
+    <div class="facts-container">
+        <div class="facts-content">
+            <div class="facts-header">
+                <h2 class="facts-title">Hechos Registrados</h2>
+                <p class="facts-subtitle">Explora y gestiona todos los hechos del sistema</p>
+                
+                <div class="filters-section">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Buscar hechos..." class="search-input">
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="categoria-filter">Categoría:</label>
+                        <select id="categoria-filter" class="filter-select">
+                            <option value="">Todas las categorías</option>
+                            <option value="infraestructura">Infraestructura</option>
+                            <option value="cultura">Cultura y Arte</option>
+                            <option value="transporte">Transporte</option>
+                            <option value="educacion">Educación</option>
+                            <option value="salud">Salud</option>
+                            <option value="medioambiente">Medio Ambiente</option>
+                            <option value="deportes">Deportes</option>
+                            <option value="comercio">Comercio</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="fecha-filter">Filtro fecha ej:</label>
+                        <input type="date" id="fecha-filter" class="filter-date">
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="estado-filter">Filtro 3:</label>
+                        <select id="estado-filter" class="filter-select">
+                            <option value="">Todos los estados</option>
+                            <option value="pendiente">Pendiente</option>
+                            <option value="verificado">Verificado</option>
+                            <option value="resuelto">Resuelto</option>
+                        </select>
+                    </div>
+                    
+                    <button class="clear-filters-btn">
+                        <i class="fas fa-times"></i> Limpiar
+                    </button>
+                </div>
+            </div>
+            
+            <div class="facts-list">
+                <!-- Hecho 1 -->
+                <div class="fact-card" data-categoria="infraestructura" data-estado="pendiente" data-fecha="2023-10-15">
+                    <div class="fact-header">
+                        <h3 class="fact-title">Bache en Avenida Principal</h3>
+                        <span class="fact-status status-pendiente">Pendiente</span>
+                    </div>
+                    <div class="fact-details">
+                        <div class="fact-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Avenida Principal 123, Ciudad</span>
+                        </div>
+                        <div class="fact-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>15 de Octubre, 2023</span>
+                        </div>
+                    </div>
+                    <p class="fact-description">Bache de considerables dimensiones en el carril derecho de la Avenida Principal, a la altura del número 123. Representa un peligro para los vehículos.</p>
+                    <div class="fact-actions">
+                        <button class="request-deletion-btn">
+                            <i class="fas fa-trash-alt"></i> Solicitar eliminación
+                        </button>
+                        <button class="view-more-btn">
+                            <i class="fas fa-eye"></i> Ver más
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Hecho 2 -->
+                <div class="fact-card" data-categoria="cultura" data-estado="verificado" data-fecha="2023-10-10">
+                    <div class="fact-header">
+                        <h3 class="fact-title">Festival de Arte Callejero</h3>
+                        <span class="fact-status status-verificado">Verificado</span>
+                    </div>
+                    <div class="fact-details">
+                        <div class="fact-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Plaza Central, Ciudad</span>
+                        </div>
+                        <div class="fact-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>10 de Octubre, 2023</span>
+                        </div>
+                    </div>
+                    <p class="fact-description">Festival anual de arte callejero con participación de artistas locales e internacionales. Incluye murales, performances y talleres abiertos a la comunidad.</p>
+                    <div class="fact-actions">
+                        <button class="request-deletion-btn">
+                            <i class="fas fa-trash-alt"></i> Solicitar eliminación
+                        </button>
+                        <button class="view-more-btn">
+                            <i class="fas fa-eye"></i> Ver más
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Hecho 3 -->
+                <div class="fact-card" data-categoria="transporte" data-estado="resuelto" data-fecha="2023-10-05">
+                    <div class="fact-header">
+                        <h3 class="fact-title">Semáforo fuera de servicio</h3>
+                        <span class="fact-status status-resuelto">Resuelto</span>
+                    </div>
+                    <div class="fact-details">
+                        <div class="fact-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Esquina Calles 5 y 10, Ciudad</span>
+                        </div>
+                        <div class="fact-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>5 de Octubre, 2023</span>
+                        </div>
+                    </div>
+                    <p class="fact-description">Semáforo completamente apagado en intersección de alto tráfico. Ya fue reparado por el departamento de tránsito municipal.</p>
+                    <div class="fact-actions">
+                        <button class="request-deletion-btn">
+                            <i class="fas fa-trash-alt"></i> Solicitar eliminación
+                        </button>
+                        <button class="view-more-btn">
+                            <i class="fas fa-eye"></i> Ver más
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Hecho 4 -->
+                <div class="fact-card" data-categoria="educacion" data-estado="verificado" data-fecha="2023-09-28">
+                    <div class="fact-header">
+                        <h3 class="fact-title">Biblioteca móvil en barrio Norte</h3>
+                        <span class="fact-status status-verificado">Verificado</span>
+                    </div>
+                    <div class="fact-details">
+                        <div class="fact-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Plaza del Sol, Barrio Norte</span>
+                        </div>
+                        <div class="fact-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>28 de Septiembre, 2023</span>
+                        </div>
+                    </div>
+                    <p class="fact-description">Servicio de biblioteca móvil que visita el barrio los últimos viernes de cada mes. Ofrece préstamo de libros y actividades de promoción de la lectura.</p>
+                    <div class="fact-actions">
+                        <button class="request-deletion-btn">
+                            <i class="fas fa-trash-alt"></i> Solicitar eliminación
+                        </button>
+                        <button class="view-more-btn">
+                            <i class="fas fa-eye"></i> Ver más
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Hecho 5 -->
+                <div class="fact-card" data-categoria="salud" data-estado="pendiente" data-fecha="2023-09-20">
+                    <div class="fact-header">
+                        <h3 class="fact-title">Campamento de vacunación antirrábica</h3>
+                        <span class="fact-status status-pendiente">Pendiente</span>
+                    </div>
+                    <div class="fact-details">
+                        <div class="fact-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Centro de Salud N° 5, Ciudad</span>
+                        </div>
+                        <div class="fact-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>20 de Septiembre, 2023</span>
+                        </div>
+                    </div>
+                    <p class="fact-description">Jornada de vacunación antirrábica para mascotas. Se requiere confirmación de fecha y horario definitivos.</p>
+                    <div class="fact-actions">
+                        <button class="request-deletion-btn">
+                            <i class="fas fa-trash-alt"></i> Solicitar eliminación
+                        </button>
+                        <button class="view-more-btn">
+                            <i class="fas fa-eye"></i> Ver más
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Hecho 6 -->
+                <div class="fact-card" data-categoria="medioambiente" data-estado="verificado" data-fecha="2023-09-15">
+                    <div class="fact-header">
+                        <h3 class="fact-title">Nuevos puntos de reciclaje</h3>
+                        <span class="fact-status status-verificado">Verificado</span>
+                    </div>
+                    <div class="fact-details">
+                        <div class="fact-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Varios puntos de la ciudad</span>
+                        </div>
+                        <div class="fact-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>15 de Septiembre, 2023</span>
+                        </div>
+                    </div>
+                    <p class="fact-description">Instalación de 15 nuevos puntos de reciclaje en diferentes barrios de la ciudad. Aceptan papel, cartón, plástico y vidrio.</p>
+                    <div class="fact-actions">
+                        <button class="request-deletion-btn">
+                            <i class="fas fa-trash-alt"></i> Solicitar eliminación
+                        </button>
+                        <button class="view-more-btn">
+                            <i class="fas fa-eye"></i> Ver más
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pagination">
+                <button class="page-btn disabled">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <button class="page-btn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <p class="footer-title">¿Tenés dudas? Contactate con nosotros.</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>contacto@metamapa.org</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+54 11 1234 5678</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elementos del DOM
+            const searchInput = document.querySelector('.search-input');
+            const categoriaFilter = document.getElementById('categoria-filter');
+            const estadoFilter = document.getElementById('estado-filter');
+            const fechaFilter = document.getElementById('fecha-filter');
+            const clearFiltersBtn = document.querySelector('.clear-filters-btn');
+            const factCards = document.querySelectorAll('.fact-card');
+            const deletionButtons = document.querySelectorAll('.request-deletion-btn');
+            const viewButtons = document.querySelectorAll('.view-more-btn');
+
+            // Función para aplicar filtros
+            function applyFilters() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const selectedCategoria = categoriaFilter.value;
+                const selectedEstado = estadoFilter.value;
+                const selectedFecha = fechaFilter.value;
+
+                factCards.forEach(card => {
+                    const matchesSearch = card.querySelector('.fact-title').textContent.toLowerCase().includes(searchTerm) ||
+                                         card.querySelector('.fact-description').textContent.toLowerCase().includes(searchTerm);
+                    
+                    const matchesCategoria = !selectedCategoria || card.getAttribute('data-categoria') === selectedCategoria;
+                    const matchesEstado = !selectedEstado || card.getAttribute('data-estado') === selectedEstado;
+                    const matchesFecha = !selectedFecha || card.getAttribute('data-fecha') === selectedFecha;
+
+                    if (matchesSearch && matchesCategoria && matchesEstado && matchesFecha) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+
+            // Event listeners para filtros
+            searchInput.addEventListener('input', applyFilters);
+            categoriaFilter.addEventListener('change', applyFilters);
+            estadoFilter.addEventListener('change', applyFilters);
+            fechaFilter.addEventListener('change', applyFilters);
+
+            // Limpiar filtros
+            clearFiltersBtn.addEventListener('click', function() {
+                searchInput.value = '';
+                categoriaFilter.value = '';
+                estadoFilter.value = '';
+                fechaFilter.value = '';
+                applyFilters();
+            });
+
+            // Botones Solicitar eliminación
+            deletionButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const factTitle = this.closest('.fact-card').querySelector('.fact-title').textContent;
+                    if (confirm(`¿Estás seguro de que deseas solicitar la eliminación del hecho: "${factTitle}"?`)) {
+                        alert(`Se ha enviado una solicitud de eliminación para: ${factTitle}`);
+                    }
+                });
+            });
+
+            // Botones Ver más
+            viewButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const factTitle = this.closest('.fact-card').querySelector('.fact-title').textContent;
+                    alert(`Mostrando detalles completos de: ${factTitle}`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
