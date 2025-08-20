@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meta Mapa - Subir Hecho</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/subirHecho.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-left">
+            <h1>Meta Mapa</h1>
+            <h2>Sistema de gestión de mapeos colaborativos</h2>
+        </div>
+        <div class="header-right">
+            <div class="user-profile-header">
+                <img src="../assets/images/Attack-on-Titan-in-real-life-4.png" alt="Foto de perfil" class="profile-pic-small">
+                <span>Usuario</span>
+            </div>
+            <button class="logout-btn"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button>
+        </div>
+    </header>
+    
+    <div class="upload-container">
+        <div class="upload-content">
+            <div class="upload-header">
+                <h2 class="upload-title">Cargar Información</h2>
+                <p class="upload-subtitle">Comparte un nuevo hecho con la comunidad</p>
+            </div>
+            
+            <form class="upload-form" id="uploadForm">
+                <div class="form-section">
+                    <div class="form-group">
+                        <label for="fact-title">Título <span class="required">(*)</span></label>
+                        <input type="text" id="fact-title" placeholder="Ingresa un título descriptivo" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="fact-description">Descripción <span class="required">(*)</span></label>
+                        <textarea id="fact-description" placeholder="Describe el hecho en detalle..." rows="4" required></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <div class="form-group">
+                        <label for="fact-category">Categoría <span class="required">(*)</span></label>
+                        <select id="fact-category" required>
+                            <option value="">Selecciona una categoría</option>
+                            <option value="infraestructura">Infraestructura</option>
+                            <option value="cultura">Cultura y Arte</option>
+                            <option value="transporte">Transporte</option>
+                            <option value="educacion">Educación</option>
+                            <option value="salud">Salud</option>
+                            <option value="medioambiente">Medio Ambiente</option>
+                            <option value="deportes">Deportes</option>
+                            <option value="comercio">Comercio</option>
+                            <option value="seguridad">Seguridad</option>
+                            <option value="eventos">Eventos</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="fact-date">Fecha del acontecimiento</label>
+                        <input type="date" id="fact-date">
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <div class="form-group">
+                        <label for="fact-location">Ubicación <span class="required">(*)</span></label>
+                        <div class="location-input">
+                            <input type="text" id="fact-location" placeholder="Selecciona la ubicación en el mapa" required readonly>
+                            <button type="button" class="map-btn" id="openMapBtn">
+                                <i class="fas fa-map-marker-alt"></i> Seleccionar en mapa
+                            </button>
+                        </div>
+                    </div>
+                </div>
+               
+                
+                <div class="form-section">
+                    <div class="form-group">
+                        <label>Contenido Multimedia (Fotos y videos)</label>
+                        <div class="multimedia-upload" id="multimediaUpload">
+                            <i class="fas fa-images"></i>
+                            <p>Arrastra tus archivos aquí o <span class="browse-link">examínalos</span></p>
+                            <p class="upload-hint">Máximo 10 archivos. Formatos permitidos: JPG, PNG, MP4, MOV</p>
+                            <input type="file" id="multimediaInput" multiple accept="image/*,video/*" style="display: none;">
+                        </div>
+                        
+                        <div class="uploaded-files" id="uploadedFiles">
+                            <!-- Los archivos subidos aparecerán aquí -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="cancel-btn">
+                        <i class="fas fa-times"></i> Cancelar
+                    </button>
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-upload"></i> Publicar Hecho
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Modal para selección de mapa -->
+    <div class="modal" id="mapModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Seleccionar ubicación en el mapa</h3>
+                <button class="close-modal" id="closeMapModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="map-placeholder">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <p>Aquí iría el mapa interactivo para seleccionar la ubicación</p>
+                </div>
+                <div class="map-actions">
+                    <button type="button" class="confirm-location-btn" id="confirmLocationBtn">
+                        <i class="fas fa-check"></i> Confirmar ubicación
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <p class="footer-title">¿Tenés dudas? Contactate con nosotros.</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>contacto@metamapa.org</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+54 11 1234 5678</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elementos del DOM
+            const uploadForm = document.getElementById('uploadForm');
+            const logoUpload = document.getElementById('logoUpload');
+            const logoInput = document.getElementById('logoInput');
+            const logoPreview = document.getElementById('logoPreview');
+            const multimediaUpload = document.getElementById('multimediaUpload');
+            const multimediaInput = document.getElementById('multimediaInput');
+            const uploadedFiles = document.getElementById('uploadedFiles');
+            const browseLink = document.querySelector('.browse-link');
+            const openMapBtn = document.getElementById('openMapBtn');
+            const mapModal = document.getElementById('mapModal');
+            const closeMapModal = document.getElementById('closeMapModal');
+            const confirmLocationBtn = document.getElementById('confirmLocationBtn');
+            const locationInput = document.getElementById('fact-location');
+            
+            // Cargar logo
+            logoUpload.addEventListener('click', function() {
+                logoInput.click();
+            });
+            
+            logoInput.addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    const file = this.files[0];
+                    
+                    // Validar que sea una imagen
+                    if (!file.type.startsWith('image/')) {
+                        alert('Por favor, selecciona un archivo de imagen válido.');
+                        return;
+                    }
+                    
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(e) {
+                        logoPreview.innerHTML = `
+                            <div class="preview-item">
+                                <img src="${e.target.result}" alt="Vista previa del logo">
+                                <button type="button" class="remove-preview" onclick="removeLogo()">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        `;
+                    }
+                    
+                    reader.readAsDataURL(file);
+                }
+            });
+            
+            // Función global para eliminar el logo (necesaria para el onclick)
+            window.removeLogo = function() {
+                logoPreview.innerHTML = '';
+                logoInput.value = '';
+            };
+            
+            // Cargar multimedia
+            multimediaUpload.addEventListener('click', function(e) {
+                if (!e.target.classList.contains('browse-link')) {
+                    multimediaInput.click();
+                }
+            });
+            
+            browseLink.addEventListener('click', function(e) {
+                e.stopPropagation();
+                multimediaInput.click();
+            });
+            
+            multimediaInput.addEventListener('change', function() {
+                handleFiles(this.files);
+            });
+            
+            // Permitir arrastrar y soltar archivos
+            multimediaUpload.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                multimediaUpload.classList.add('dragover');
+            });
+            
+            multimediaUpload.addEventListener('dragleave', function() {
+                multimediaUpload.classList.remove('dragover');
+            });
+            
+            multimediaUpload.addEventListener('drop', function(e) {
+                e.preventDefault();
+                multimediaUpload.classList.remove('dragover');
+                
+                if (e.dataTransfer.files.length) {
+                    handleFiles(e.dataTransfer.files);
+                }
+            });
+            
+            // Función para manejar los archivos seleccionados
+            function handleFiles(files) {
+                const currentFiles = uploadedFiles.querySelectorAll('.uploaded-file').length;
+                
+                if (currentFiles + files.length > 10) {
+                    alert('Solo puedes subir un máximo de 10 archivos.');
+                    return;
+                }
+                
+                for (let i = 0; i < files.length; i++) {
+                    const file = files[i];
+                    
+                    // Validar tipo de archivo
+                    if (!file.type.startsWith('image/') && !file.type.startsWith('video/')) {
+                        alert(`El archivo "${file.name}" no es una imagen o video válido.`);
+                        continue;
+                    }
+                    
+                    const fileElement = createFileElement(file);
+                    uploadedFiles.appendChild(fileElement);
+                }
+            }
+            
+            // Función para crear un elemento de archivo
+            function createFileElement(file) {
+                const fileElement = document.createElement('div');
+                fileElement.className = 'uploaded-file';
+                
+                const fileIcon = document.createElement('i');
+                fileIcon.className = 'fas fa-file';
+                
+                // Determinar el icono según el tipo de archivo
+                if (file.type.startsWith('image/')) {
+                    fileIcon.className = 'fas fa-file-image';
+                } else if (file.type.startsWith('video/')) {
+                    fileIcon.className = 'fas fa-file-video';
+                }
+                
+                const fileName = document.createElement('span');
+                fileName.className = 'file-name';
+                fileName.textContent = file.name;
+                
+                const fileSize = document.createElement('span');
+                fileSize.className = 'file-size';
+                fileSize.textContent = formatFileSize(file.size);
+                
+                const removeBtn = document.createElement('button');
+                removeBtn.className = 'remove-file';
+                removeBtn.innerHTML = '<i class="fas fa-times"></i>';
+                removeBtn.addEventListener('click', function() {
+                    fileElement.remove();
+                });
+                
+                fileElement.appendChild(fileIcon);
+                fileElement.appendChild(fileName);
+                fileElement.appendChild(fileSize);
+                fileElement.appendChild(removeBtn);
+                
+                return fileElement;
+            }
+            
+            // Función para formatear el tamaño del archivo
+            function formatFileSize(bytes) {
+                if (bytes === 0) return '0 Bytes';
+                
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+            }
+            
+            // Mapa modal
+            openMapBtn.addEventListener('click', function() {
+                mapModal.style.display = 'flex';
+            });
+            
+            closeMapModal.addEventListener('click', function() {
+                mapModal.style.display = 'none';
+            });
+            
+            confirmLocationBtn.addEventListener('click', function() {
+                // Simular la selección de una ubicación
+                locationInput.value = 'Avenida Principal 123, Ciudad';
+                mapModal.style.display = 'none';
+            });
+            
+            // Cerrar modal al hacer clic fuera del contenido
+            window.addEventListener('click', function(e) {
+                if (e.target === mapModal) {
+                    mapModal.style.display = 'none';
+                }
+            });
+            
+            // Manejar el envío del formulario
+            uploadForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Validaciones básicas
+                if (!logoInput.files || !logoInput.files[0]) {
+                    alert('Por favor, sube un logo para el hecho.');
+                    return;
+                }
+                
+                if (!locationInput.value) {
+                    alert('Por favor, selecciona una ubicación en el mapa.');
+                    return;
+                }
+                
+                // Simular envío exitoso
+                alert('¡Hecho publicado correctamente! Será revisado antes de aparecer públicamente.');
+                
+                // Redirigir después de enviar (simulado)
+                setTimeout(function() {
+                    window.location.href = 'navegarHechos.html';
+                }, 1500);
+            });
+            
+            // Manejar cancelación
+            const cancelBtn = document.querySelector('.cancel-btn');
+            cancelBtn.addEventListener('click', function() {
+                if (confirm('¿Estás seguro de que deseas cancelar? Los cambios no guardados se perderán.')) {
+                    window.location.href = 'navegarHechos.html';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
