@@ -6,6 +6,10 @@
     <title>Meta Mapa - Subir Hecho</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../styles/subirHecho.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
 
 <body>
@@ -19,7 +23,7 @@
                 <img src="../assets/images/Attack-on-Titan-in-real-life-4.png" alt="Foto de perfil" class="profile-pic-small">
                 <span>Usuario</span>
             </div>
-            <button class="logout-btn"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button>
+            <button class="logout-btn" onclick="location.href='InicioSesion.html'"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button>
         </div>
     </header>
     
@@ -72,7 +76,7 @@
                         <label for="fact-location">Ubicación <span class="required">(*)</span></label>
                         <div class="location-input">
                             <input type="text" id="fact-location" placeholder="Selecciona la ubicación en el mapa" required readonly>
-                            <button type="button" class="map-btn" id="openMapBtn">
+                            <button type="button" class="map-btn" id="openMapBtn" onclick="document.getElementById('mapModal').style.display='block'; document.getElementById('mapModal').dispatchEvent(new Event('show'));">
                                 <i class="fas fa-map-marker-alt"></i> Seleccionar en mapa
                             </button>
                         </div>
@@ -107,7 +111,7 @@
             </form>
         </div>
     </div>
-    
+
     <!-- Modal para selección de mapa -->
     <div class="modal" id="mapModal">
         <div class="modal-content">
@@ -116,9 +120,7 @@
                 <button class="close-modal" id="closeMapModal">&times;</button>
             </div>
             <div class="modal-body">
-                <div class="map-placeholder">
-                    <i class="fas fa-map-marked-alt"></i>
-                    <p>Aquí iría el mapa interactivo para seleccionar la ubicación</p>
+                <div id="map" style="height: 400px; width: 100%;">
                 </div>
                 <div class="map-actions">
                     <button type="button" class="confirm-location-btn" id="confirmLocationBtn">
@@ -360,6 +362,56 @@
                     window.location.href = 'navegarHechos.html';
                 }
             });
+        });
+
+        let map;
+        let marker;
+        let selectedLatLng = null;
+
+        function initMap() {
+            if (map) return; // No volver a inicializar si ya está creado
+
+            map = L.map('map').setView([0, 0], 2);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap contributors'
+            }).addTo(map);
+
+            map.on('click', function (e) {
+                selectedLatLng = e.latlng;
+
+                if (marker) {
+                    marker.setLatLng(e.latlng);
+                } else {
+                    marker = L.marker(e.latlng).addTo(map);
+                }
+            });
+        }
+
+        // Abrir el modal y mostrar mapa
+        document.getElementById('mapModal').addEventListener('show', function () {
+            initMap();
+            setTimeout(() => {
+                map.invalidateSize(); // Soluciona errores de tamaño cuando el mapa está en un modal
+            }, 200);
+        });
+
+        // Confirmar ubicación seleccionada
+        document.getElementById('confirmLocationBtn').addEventListener('click', function () {
+            if (selectedLatLng) {
+                alert("Ubicación seleccionada:\nLat: " + selectedLatLng.lat.toFixed(6) + "\nLng: " + selectedLatLng.lng.toFixed(6));
+                // Podés guardar estas coordenadas donde necesites
+                // Ejemplo: document.getElementById("inputLat").value = selectedLatLng.lat;
+                // Luego cerrar el modal
+                document.getElementById('mapModal').style.display = 'none';
+            } else {
+                alert("Por favor seleccioná una ubicación en el mapa.");
+            }
+        });
+
+        // Abrir/Cerrar el modal manualmente (si no tenés ya esto implementado)
+        document.getElementById('closeMapModal').addEventListener('click', function () {
+            document.getElementById('mapModal').style.display = 'none';
         });
     </script>
 </body>
