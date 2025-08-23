@@ -60,7 +60,7 @@
                 <button type="submit" class="register-button">Registrarte</button>
             </form>
             <div class="login-link">
-                <p>¿Tenés una cuenta? <a href="login.html">Ingresá acá</a></p>
+                <p>¿Tenés una cuenta? <a href="InicioSesion.html">Ingresá acá</a></p>
             </div>
         </div>
     </div>
@@ -81,4 +81,54 @@
         </div>
     </footer>
 </body>
+<script>
+    document.querySelector('.register-form').addEventListener('submit', function (e) {
+        e.preventDefault(); // Evita que se recargue la página
+
+        // Obtener los valores del formulario
+        const nombre = document.getElementById('nombre').value.trim();
+        const apellido = document.getElementById('apellido').value.trim();
+        const fechaNacimiento = document.getElementById('fecha-nacimiento').value;
+        const username = document.getElementById('usuario').value.trim();
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirm-password').value;
+
+        // Validación simple de contraseñas
+        if (password !== confirmPassword) {
+            alert('Las contraseñas no coinciden.');
+            return;
+        }
+
+        // Crear objeto para enviar
+        const data = {
+            nombre: nombre,
+            apellido: apellido,
+            fechaNacimiento: fechaNacimiento,
+            username: username,
+            password: password
+        };
+
+        // Enviar al backend con fetch
+        fetch('http://localhost:8080/registrar', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(async response => {
+            if (response.ok) {
+                alert('¡Registro exitoso!');
+                window.location.href = 'login.html'; // Redirigir al login
+            } else {
+                const errorMsg = await response.text();
+                alert('Error en el registro: ' + errorMsg);
+            }
+        })
+        .catch(error => {
+            console.error('Error en la petición:', error);
+            alert('Error al conectar con el servidor.');
+        });
+    });
+</script>
 </html>
