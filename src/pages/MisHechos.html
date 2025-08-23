@@ -95,7 +95,7 @@
                         <button class="edit-btn" onclick="location.href='EditarHecho.html'">
                             <i class="fas fa-edit"></i> Editar
                         </button>
-                        <button class="view-btn">
+                        <button class="view-btn" onclick="location.href='HechoDetallado.html'">
                             <i class="fas fa-eye"></i> Ver Detalles
                         </button>
                     </div>
@@ -126,7 +126,7 @@
                         <button class="edit-btn" onclick="location.href='EditarHecho.html'">
                             <i class="fas fa-edit"></i> Editar
                         </button>
-                        <button class="view-btn">
+                        <button class="view-btn" onclick="location.href='HechoDetallado.html'">
                             <i class="fas fa-eye"></i> Ver Detalles
                         </button>
                     </div>
@@ -152,12 +152,12 @@
                             <span>28 visualizaciones</span>
                         </div>
                     </div>
-                    <p class="fact-description">Festival anual de arte callejero con participación de artistas locales e internacionales. Incluye murales, performances y talleres abiertos a la comunidad.</p>
+                    <p class="fact-description">Festival anual de arte callejero con participación de artists locales e internacionales. Incluye murales, performances y talleres abiertos a la comunidad.</p>
                     <div class="fact-actions">
                         <button class="edit-btn" onclick="location.href='EditarHecho.html'">
                             <i class="fas fa-edit"></i> Editar
                         </button>
-                        <button class="view-btn">
+                        <button class="view-btn" onclick="location.href='HechoDetallado.html'">
                             <i class="fas fa-eye"></i> Ver Detalles
                         </button>
                     </div>
@@ -188,7 +188,7 @@
                         <button class="edit-btn" onclick="location.href='EditarHecho.html'">
                             <i class="fas fa-edit"></i> Editar
                         </button>
-                        <button class="view-btn">
+                        <button class="view-btn" onclick="location.href='HechoDetallado.html'">
                             <i class="fas fa-eye"></i> Ver Detalles
                         </button>
                     </div>
@@ -219,7 +219,7 @@
                         <button class="edit-btn" onclick="location.href='EditarHecho.html'">
                             <i class="fas fa-edit"></i> Editar
                         </button>
-                        <button class="view-btn">
+                        <button class="view-btn" onclick="location.href='HechoDetallado.html'">
                             <i class="fas fa-eye"></i> Ver Detalles
                         </button>
                     </div>
@@ -274,16 +274,6 @@
                     
                     // Simular recarga de datos
                     // En una implementación real, aquí se haría una petición al servidor
-                });
-            });
-            
-            // Botones Ver Detalles
-            const viewButtons = document.querySelectorAll('.view-btn');
-            
-            viewButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const factTitle = this.closest('.fact-card').querySelector('.fact-title').textContent;
-                    alert(`Mostrando detalles de: ${factTitle}`);
                 });
             });
             

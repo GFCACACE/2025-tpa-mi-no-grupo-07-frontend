@@ -93,7 +93,7 @@
                         <button class="request-deletion-btn">
                             <i class="fas fa-trash-alt"></i> Solicitar eliminación
                         </button>
-                        <button class="action-btn" onclick="location.href='HechoDetallado.html'">
+                        <button class="view-more-btn" onclick="location.href='HechoDetallado.html'">
                             <i class="fas fa-eye"></i> Ver más
                         </button>
                     </div>
@@ -120,7 +120,7 @@
                         <button class="request-deletion-btn">
                             <i class="fas fa-trash-alt"></i> Solicitar eliminación
                         </button>
-                        <button class="action-btn" onclick="location.href='HechoDetallado.html'">
+                        <button class="view-more-btn" onclick="location.href='HechoDetallado.html'">
                             <i class="fas fa-eye"></i> Ver más
                         </button>
                     </div>
@@ -147,10 +147,9 @@
                         <button class="request-deletion-btn">
                             <i class="fas fa-trash-alt"></i> Solicitar eliminación
                         </button>
-                        <button class="action-btn" onclick="location.href='HechoDetallado.html'">
+                        <button class="view-more-btn" onclick="location.href='HechoDetallado.html'">
                             <i class="fas fa-eye"></i> Ver más
                         </button>
-
                     </div>
                 </div>
                 
@@ -175,7 +174,7 @@
                         <button class="request-deletion-btn">
                             <i class="fas fa-trash-alt"></i> Solicitar eliminación
                         </button>
-                        <button class="action-btn" onclick="location.href='HechoDetallado.html'">
+                        <button class="view-more-btn" onclick="location.href='HechoDetallado.html'">
                             <i class="fas fa-eye"></i> Ver más
                         </button>
                     </div>
@@ -202,7 +201,7 @@
                         <button class="request-deletion-btn">
                             <i class="fas fa-trash-alt"></i> Solicitar eliminación
                         </button>
-                        <button class="action-btn" onclick="location.href='HechoDetallado.html'">
+                        <button class="view-more-btn" onclick="location.href='HechoDetallado.html'">
                             <i class="fas fa-eye"></i> Ver más
                         </button>
                     </div>
@@ -229,7 +228,7 @@
                         <button class="request-deletion-btn">
                             <i class="fas fa-trash-alt"></i> Solicitar eliminación
                         </button>
-                        <button class="action-btn" onclick="location.href='HechoDetallado.html'">
+                        <button class="view-more-btn" onclick="location.href='HechoDetallado.html'">
                             <i class="fas fa-eye"></i> Ver más
                         </button>
                     </div>
@@ -276,7 +275,6 @@
             const clearFiltersBtn = document.querySelector('.clear-filters-btn');
             const factCards = document.querySelectorAll('.fact-card');
             const deletionButtons = document.querySelectorAll('.request-deletion-btn');
-            const viewButtons = document.querySelectorAll('.view-more-btn');
 
             // Función para aplicar filtros
             function applyFilters() {
@@ -323,14 +321,6 @@
                     if (confirm(`¿Estás seguro de que deseas solicitar la eliminación del hecho: "${factTitle}"?`)) {
                         alert(`Se ha enviado una solicitud de eliminación para: ${factTitle}`);
                     }
-                });
-            });
-
-            // Botones Ver más
-            viewButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const factTitle = this.closest('.fact-card').querySelector('.fact-title').textContent;
-                    alert(`Mostrando detalles completos de: ${factTitle}`);
                 });
             });
         });
