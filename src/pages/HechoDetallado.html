@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meta Mapa - Detalle del Hecho</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/HechoDetallado.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-left">
+            <h1>Meta Mapa</h1>
+            <h2>Sistema de gestión de mapeos colaborativos</h2>
+        </div>
+        <div class="header-right">
+            <div class="user-profile-header">
+                <img src="../assets/images/Attack-on-Titan-in-real-life-4.png" alt="Foto de perfil" class="profile-pic-small">
+                <span>Hajime Isayama</span>
+            </div>
+            <button class="logout-btn" onclick="location.href='InicioSesion.html'"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button>
+        </div>
+    </header>
+    
+    <div class="detail-container">
+        <div class="detail-content">
+            <div class="back-nav">
+                <button class="back-btn" onclick="history.back()">
+                    <i class="fas fa-arrow-left"></i> Volver atrás
+                </button>
+            </div>
+            
+            <div class="fact-detail-card">
+                <div class="fact-detail-header">
+                    <div class="fact-title-section">
+                        <h2 class="fact-detail-title">Bache en Avenida Principal</h2>
+                        <span class="fact-status status-verificado">Verificado</span>
+                    </div>
+                    <div class="fact-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-user"></i>
+                            <span>Publicado por: <strong>Hajime Isayama</strong></span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Publicado el: <strong>15 de Octubre, 2023</strong></span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-eye"></i>
+                            <span><strong>142</strong> visualizaciones</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="fact-detail-body">
+                    <div class="detail-section">
+                        <h3 class="section-title">
+                            <i class="fas fa-map-marker-alt"></i> Ubicación
+                        </h3>
+                        <div class="location-details">
+                            <p class="location-address">Avenida Principal 123, Ciudad</p>
+                            <div class="map-container">
+                                <div class="map-placeholder">
+                                    <i class="fas fa-map-marked-alt"></i>
+                                    <p>Mapa interactivo mostrando la ubicación exacta</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h3 class="section-title">
+                            <i class="fas fa-align-left"></i> Descripción completa
+                        </h3>
+                        <div class="description-content">
+                            <p>En horas de la tarde de este domingo, se registró un hecho que llamó poderosamente la atención de vecinos y transeúntes de la zona céntrica. Según los primeros reportes de testigos presenciales, el incidente involucró a varias personas y generó un despliegue inmediato de personal de seguridad en el lugar.</p>
+                            
+                            <p>Testigos relataron que la situación se desarrolló de forma repentina y provocó momentos de tensión entre los presentes. Las autoridades trabajan activamente para esclarecer lo ocurrido y determinar las circunstancias exactas que rodearon este evento. Hasta el momento, se ha establecido un perímetro de seguridad mientras se realizan las investigaciones correspondientes.</p>
+                            
+                            <p>Varios comercios de la zona cerraron temporalmente sus puertas como medida de precaución. El tránsito vehicular fue desviado por calles aledañas durante aproximadamente dos horas mientras se procedía con el protocolo de seguridad establecido para estos casos.</p>
+                            
+                            <p>Las autoridades han solicitado a cualquier persona que tenga información adicional o material audiovisual del incidente que se ponga en contacto con las autoridades correspondientes para colaborar con la investigación que se está llevando a cabo.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h3 class="section-title">
+                            <i class="fas fa-images"></i> Contenido Multimedia
+                        </h3>
+                        <div class="multimedia-gallery">
+                            <div class="gallery-item">
+                                <img src="../assets/images/incidente-1.jpg" alt="Foto del incidente 1" class="gallery-image">
+                                <div class="gallery-overlay">
+                                    <button class="gallery-btn" onclick="openLightbox('../assets/images/incidente-1.jpg')">
+                                        <i class="fas fa-expand"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="../assets/images/incidente-2.jpg" alt="Foto del incidente 2" class="gallery-image">
+                                <div class="gallery-overlay">
+                                    <button class="gallery-btn" onclick="openLightbox('../assets/images/incidente-2.jpg')">
+                                        <i class="fas fa-expand"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <div class="video-item">
+                                    <i class="fas fa-play-circle"></i>
+                                    <span>video_incidente.mp4</span>
+                                    <button class="play-btn" onclick="playVideo('../assets/videos/incidente.mp4')">
+                                        <i class="fas fa-play"></i> Reproducir
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h3 class="section-title">
+                            <i class="fas fa-info-circle"></i> Información adicional
+                        </h3>
+                        <div class="additional-info">
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <span class="info-label">Categoría:</span>
+                                    <span class="info-value">Infraestructura</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Fecha del hecho:</span>
+                                    <span class="info-value">15 de Octubre, 2023</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Estado actual:</span>
+                                    <span class="info-value status-verificado">Verificado</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Última actualización:</span>
+                                    <span class="info-value">17 de Octubre, 2023</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="fact-detail-actions">
+                    <button class="action-btn edit-btn" onclick="location.href='EditarHecho.html'">
+                        <i class="fas fa-edit"></i> Editar Hecho
+                    </button>
+                    <button class="action-btn report-btn">
+                        <i class="fas fa-flag"></i> Reportar Problema
+                    </button>
+                    <button class="action-btn share-btn" id="shareBtn">
+                        <i class="fas fa-share-alt"></i> Compartir
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Lightbox para imágenes -->
+    <div class="lightbox" id="imageLightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" onclick="closeLightbox()">
+                <i class="fas fa-times"></i>
+            </button>
+            <img src="" alt="" class="lightbox-image" id="lightboxImage">
+        </div>
+    </div>
+    
+    <!-- Modal para video -->
+    <div class="modal" id="videoModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Reproduciendo video</h3>
+                <button class="close-modal" onclick="closeVideo()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <video controls id="videoPlayer" class="video-player">
+                    Tu navegador no soporta la reproducción de videos.
+                </video>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <p class="footer-title">¿Tenés dudas? Contactate con nosotros.</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>contacto@metamapa.org</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+54 11 1234 5678</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Compartir hecho
+            const shareBtn = document.getElementById('shareBtn');
+            
+            shareBtn.addEventListener('click', function() {
+                if (navigator.share) {
+                    navigator.share({
+                        title: 'Bache en Avenida Principal - Meta Mapa',
+                        text: 'Mira este hecho reportado en Meta Mapa',
+                        url: window.location.href
+                    })
+                    .catch(error => {
+                        console.log('Error al compartir:', error);
+                    });
+                } else {
+                    alert('La función de compartir no está disponible en tu navegador. Copia la URL para compartir.');
+                }
+            });
+            
+            // Reportar problema
+            const reportBtn = document.querySelector('.report-btn');
+            
+            reportBtn.addEventListener('click', function() {
+                alert('Función de reportar problema en desarrollo.');
+            });
+            
+            // Enviar comentario
+            const submitCommentBtn = document.querySelector('.submit-comment-btn');
+            
+            submitCommentBtn.addEventListener('click', function() {
+                alert('Función de comentarios en desarrollo.');
+            });
+        });
+        
+        // Lightbox para imágenes
+        function openLightbox(imageSrc) {
+            const lightbox = document.getElementById('imageLightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+            
+            lightboxImage.src = imageSrc;
+            lightbox.style.display = 'flex';
+        }
+        
+        function closeLightbox() {
+            document.getElementById('imageLightbox').style.display = 'none';
+        }
+        
+        // Modal para video
+        function playVideo(videoSrc) {
+            const modal = document.getElementById('videoModal');
+            const videoPlayer = document.getElementById('videoPlayer');
+            
+            videoPlayer.src = videoSrc;
+            modal.style.display = 'flex';
+        }
+        
+        function closeVideo() {
+            const modal = document.getElementById('videoModal');
+            const videoPlayer = document.getElementById('videoPlayer');
+            
+            videoPlayer.pause();
+            modal.style.display = 'none';
+        }
+        
+        // Cerrar modales al hacer clic fuera del contenido
+        window.addEventListener('click', function(e) {
+            const lightbox = document.getElementById('imageLightbox');
+            const modal = document.getElementById('videoModal');
+            
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+            
+            if (e.target === modal) {
+                closeVideo();
+            }
+        });
+    </script>
+</body>
+</html>

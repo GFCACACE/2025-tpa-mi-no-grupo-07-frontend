@@ -37,42 +37,63 @@ header {
     font-weight: normal;
 }
 
+
 .header-right {
     display: flex;
     gap: 15px;
-    align-items: center;
 }
 
-.user-profile-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: white;
-}
-
-.profile-pic-small {
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-}
-
-.logout-btn {
-    padding: 8px 15px;
-    background-color: transparent;
-    color: white;
-    border: 1px solid white;
+.login-btn, .register-btn {
+    padding: 10px 20px;
+    border: none;
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
-    transition: background-color 0.3s;
 }
 
-.logout-btn:hover {
+.login-btn {
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+}
+
+.login-btn:hover {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
+.register-btn {
+    background-color: #3498db;
+    color: white;
+}
+
+.register-btn:hover {
+    background-color: #2980b9;
+}
+
+.login-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.login-box {
+    background-color: #D1C7C7; /* Color fondo */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    width: 100%;
+    max-width: 450px;
+}
+
+.login-title {
+    text-align: center;
+    color: #35327D;
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+}
 /* ESTILOS PARA PANEL DE CONTRIBUYENTE */
 .contributor-container {
     flex: 1;
@@ -106,7 +127,7 @@ header {
 
 .contributor-actions {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
     margin-top: 30px;
 }
@@ -207,13 +228,6 @@ footer {
 }
 
 /* RESPONSIVE */
-@media (max-width: 1024px) {
-    .contributor-actions {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 25px;
-    }
-}
-
 @media (max-width: 768px) {
     .contributor-actions {
         grid-template-columns: 1fr;
@@ -267,10 +281,5 @@ footer {
     
     .action-card h3 {
         font-size: 1.2rem;
-    }
-    
-    .action-btn {
-        padding: 10px 20px;
-        font-size: 0.9rem;
     }
 }
