@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meta Mapa - Mis Hechos</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/MisHechos.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-left">
+            <h1>Meta Mapa</h1>
+            <h2>Sistema de gestión de mapeos colaborativos</h2>
+        </div>
+        <div class="header-right">
+            <div class="user-profile-header">
+                <img src="../assets/images/Attack-on-Titan-in-real-life-4.png" alt="Foto de perfil" class="profile-pic-small">
+                <span>Hajime Isayama</span>
+            </div>
+            <button class="logout-btn" onclick="location.href='InicioSesion.html'"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button>
+        </div>
+    </header>
+    
+    <div class="my-facts-container">
+        <div class="my-facts-content">
+            <div class="my-facts-header">
+                <h2 class="my-facts-title">Mis Hechos</h2>
+                <p class="my-facts-subtitle">Hechos que has subido en la última semana</p>
+                
+                <div class="time-filter">
+                    <span class="filter-label">Mostrar:</span>
+                    <button class="filter-btn active">7 días</button>
+                    <button class="filter-btn">15 días</button>
+                    <button class="filter-btn">30 días</button>
+                </div>
+            </div>
+            
+            <div class="facts-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-number">8</span>
+                        <span class="stat-label">Hechos subidos</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-number">142</span>
+                        <span class="stat-label">Visualizaciones</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-number">5</span>
+                        <span class="stat-label">Verificados</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="facts-list">
+                <!-- Hecho 1 -->
+                <div class="fact-card">
+                    <div class="fact-header">
+                        <h3 class="fact-title">Bache en Avenida Principal</h3>
+                        <span class="fact-status status-verificado">Verificado</span>
+                    </div>
+                    <div class="fact-details">
+                        <div class="fact-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Avenida Principal 123, Ciudad</span>
+                        </div>
+                        <div class="fact-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Hace 2 días</span>
+                        </div>
+                        <div class="fact-views">
+                            <i class="fas fa-eye"></i>
+                            <span>45 visualizaciones</span>
+                        </div>
+                    </div>
+                    <p class="fact-description">Bache de considerables dimensiones en el carril derecho de la Avenida Principal, a la altura del número 123. Representa un peligro para los vehículos.</p>
+                    <div class="fact-actions">
+                        <button class="edit-btn" onclick="location.href='EditarHecho.html'">
+                            <i class="fas fa-edit"></i> Editar
+                        </button>
+                        <button class="view-btn" onclick="location.href='HechoDetallado.html'">
+                            <i class="fas fa-eye"></i> Ver Detalles
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Hecho 2 -->
+                <div class="fact-card">
+                    <div class="fact-header">
+                        <h3 class="fact-title">Semáforo fuera de servicio</h3>
+                        <span class="fact-status status-resuelto">Verificado con sugerencias</span>
+                    </div>
+                    <div class="fact-details">
+                        <div class="fact-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Esquina Calles 5 y 10, Ciudad</span>
+                        </div>
+                        <div class="fact-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Hace 3 días</span>
+                        </div>
+                        <div class="fact-views">
+                            <i class="fas fa-eye"></i>
+                            <span>32 visualizaciones</span>
+                        </div>
+                    </div>
+                    <p class="fact-description">Semáforo completamente apagado en intersección de alto tráfico. Ya fue reparado por el departamento de tránsito municipal.</p>
+                    <div class="fact-actions">
+                        <button class="edit-btn" onclick="location.href='EditarHecho.html'">
+                            <i class="fas fa-edit"></i> Editar
+                        </button>
+                        <button class="view-btn" onclick="location.href='HechoDetallado.html'">
+                            <i class="fas fa-eye"></i> Ver Detalles
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Hecho 3 -->
+                <div class="fact-card">
+                    <div class="fact-header">
+                        <h3 class="fact-title">Festival de Arte Callejero</h3>
+                        <span class="fact-status status-verificado">Verificado</span>
+                    </div>
+                    <div class="fact-details">
+                        <div class="fact-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Plaza Central, Ciudad</span>
+                        </div>
+                        <div class="fact-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Hace 4 días</span>
+                        </div>
+                        <div class="fact-views">
+                            <i class="fas fa-eye"></i>
+                            <span>28 visualizaciones</span>
+                        </div>
+                    </div>
+                    <p class="fact-description">Festival anual de arte callejero con participación de artists locales e internacionales. Incluye murales, performances y talleres abiertos a la comunidad.</p>
+                    <div class="fact-actions">
+                        <button class="edit-btn" onclick="location.href='EditarHecho.html'">
+                            <i class="fas fa-edit"></i> Editar
+                        </button>
+                        <button class="view-btn" onclick="location.href='HechoDetallado.html'">
+                            <i class="fas fa-eye"></i> Ver Detalles
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Hecho 4 -->
+                <div class="fact-card">
+                    <div class="fact-header">
+                        <h3 class="fact-title">Árbol caído en parque</h3>
+                        <span class="fact-status status-pendiente">Pendiente</span>
+                    </div>
+                    <div class="fact-details">
+                        <div class="fact-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Parque Central, Ciudad</span>
+                        </div>
+                        <div class="fact-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Hace 5 días</span>
+                        </div>
+                        <div class="fact-views">
+                            <i class="fas fa-eye"></i>
+                            <span>18 visualizaciones</span>
+                        </div>
+                    </div>
+                    <p class="fact-description">Árbol de gran tamaño caído tras las últimas tormentas. Bloquea parcialmente el sendero principal del parque.</p>
+                    <div class="fact-actions">
+                        <button class="edit-btn" onclick="location.href='EditarHecho.html'">
+                            <i class="fas fa-edit"></i> Editar
+                        </button>
+                        <button class="view-btn" onclick="location.href='HechoDetallado.html'">
+                            <i class="fas fa-eye"></i> Ver Detalles
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Hecho 5 -->
+                <div class="fact-card">
+                    <div class="fact-header">
+                        <h3 class="fact-title">Nuevos puntos de reciclaje</h3>
+                        <span class="fact-status status-verificado">Verificado</span>
+                    </div>
+                    <div class="fact-details">
+                        <div class="fact-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Varios puntos de la ciudad</span>
+                        </div>
+                        <div class="fact-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Hace 6 días</span>
+                        </div>
+                        <div class="fact-views">
+                            <i class="fas fa-eye"></i>
+                            <span>37 visualizaciones</span>
+                        </div>
+                    </div>
+                    <p class="fact-description">Instalación de 15 nuevos puntos de reciclaje en diferentes barrios de la ciudad. Aceptan papel, cartón, plástico y vidrio.</p>
+                    <div class="fact-actions">
+                        <button class="edit-btn" onclick="location.href='EditarHecho.html'">
+                            <i class="fas fa-edit"></i> Editar
+                        </button>
+                        <button class="view-btn" onclick="location.href='HechoDetallado.html'">
+                            <i class="fas fa-eye"></i> Ver Detalles
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pagination">
+                <button class="page-btn disabled">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <p class="footer-title">¿Tenés dudas? Contactate con nosotros.</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>contacto@metamapa.org</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+54 11 1234 5678</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Filtros de tiempo
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remover clase active de todos los botones
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Agregar clase active al botón clickeado
+                    this.classList.add('active');
+                    
+                    // Aquí iría la lógica para filtrar los hechos según el tiempo seleccionado
+                    const filterValue = this.textContent.toLowerCase();
+                    console.log(`Filtrando por: ${filterValue}`);
+                    
+                    // Simular recarga de datos
+                    // En una implementación real, aquí se haría una petición al servidor
+                });
+            });
+            
+            // Paginación
+            const pageButtons = document.querySelectorAll('.page-btn:not(.disabled)');
+            
+            pageButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    if (!this.classList.contains('active')) {
+                        document.querySelector('.page-btn.active').classList.remove('active');
+                        this.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

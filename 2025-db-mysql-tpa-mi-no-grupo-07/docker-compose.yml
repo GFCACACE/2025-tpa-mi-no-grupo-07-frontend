@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  mysql_db:
+    image: mysql:8.0 # Specifies the MySQL image and version
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+    ports:
+      - "3306:3306" # Maps host port 3306 to container port 3306
+    volumes:
+      - mysql_data:/var/lib/mysql # Persist data outside the container
+volumes:
+  mysql_data: # Define the named volume for data persistence
