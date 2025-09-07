@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meta Mapa - Mapa Interactivo</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="../styles/HechosEnMapa.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-left">
+            <h1>Meta Mapa</h1>
+            <h2>Sistema de gestión de mapeos colaborativos</h2>
+        </div>
+        <div class="header-right">
+            <div class="user-profile-header" onclick="location.href='PerfilContribuyente.html'" style="cursor:pointer;">
+                <img src="../assets/images/Attack-on-Titan-in-real-life-4.png" alt="Foto de perfil" class="profile-pic-small">
+                <span>Usuario</span>
+            </div>
+           <button class="logout-btn" onclick="location.href='InicioSesion.html'"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button>
+        </div>
+    </header>
+    
+    <div class="map-container">
+        <div class="map-content">
+            <div class="map-header">
+                <h2 class="map-title">Mapa Interactivo de Hechos</h2>
+                <p class="map-subtitle">Explora y visualiza los hechos geolocalizados en el mapa</p>
+                
+                <div class="map-controls">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="Buscar hechos..." class="search-input">
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="categoria-filter">Filtrar por categoría:</label>
+                        <select id="categoria-filter" class="filter-select">
+                            <option value="">Todas las categorías</option>
+                            <option value="infraestructura">Infraestructura</option>
+                            <option value="cultura">Cultura</option>
+                            <option value="transporte">Transporte</option>
+                            <option value="educacion">Educación</option>
+                            <option value="salud">Salud</option>
+                        </select>
+                    </div>
+                    
+                    <button class="current-location-btn">
+                        <i class="fas fa-location-arrow"></i> Mi ubicación
+                    </button>
+                </div>
+            </div>
+            
+            <div id="map" class="map"></div>
+            
+            <div class="map-sidebar" id="sidebar">
+                <div class="sidebar-header">
+                    <h3>Detalles del Hecho</h3>
+                    <button class="close-sidebar" id="closeSidebar">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="sidebar-content" id="sidebarContent">
+                    <p class="placeholder-text">Selecciona un marcador en el mapa para ver los detalles del hecho</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <p class="footer-title">¿Tenés dudas? Contactate con nosotros.</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>contacto@metamapa.org</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+54 11 1234 5678</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        // Datos de ejemplo - Hechos con coordenadas
+        const hechos = [
+            {
+                id: 1,
+                titulo: "Nuevo semáforo peatonal",
+                descripcion: "Instalación de semáforo peatonal en intersección con alto flujo de transeúntes. Mejora la seguridad vial en la zona.",
+                categoria: "infraestructura",
+                coordenadas: [-34.6037, -58.3816], // Buenos Aires
+                fecha: "2023-11-15",
+                usuario: "JuanPerez",
+                estado: "Completado",
+                fotos: ["foto1.jpg", "foto2.jpg"]
+            },
+            {
+                id: 2,
+                titulo: "Festival cultural barrial",
+                descripcion: "Festival anual de cultura con música en vivo, food trucks y exposiciones de artistas locales.",
+                categoria: "cultura",
+                coordenadas: [-34.6083, -58.3712],
+                fecha: "2023-12-05",
+                usuario: "MariaGarcia",
+                estado: "Planificado",
+                fotos: ["foto3.jpg"]
+            },
+            {
+                id: 3,
+                titulo: "Parada de colectivo dañada",
+                descripcion: "Estructura de la parada de colectivo requiere reparación urgente. Varios vidrios rotos y estructura oxidada.",
+                categoria: "transporte",
+                coordenadas: [-34.6012, -58.3865],
+                fecha: "2023-11-10",
+                usuario: "CarlosLopez",
+                estado: "Pendiente",
+                fotos: []
+            },
+            {
+                id: 4,
+                titulo: "Taller de programación gratuito",
+                descripcion: "Taller comunitario de introducción a la programación para jóvenes. No se requieren conocimientos previos.",
+                categoria: "educacion",
+                coordenadas: [-34.6058, -58.3921],
+                fecha: "2023-11-25",
+                usuario: "AnaMartinez",
+                estado: "En progreso",
+                fotos: ["foto4.jpg", "foto5.jpg"]
+            },
+            {
+                id: 5,
+                titulo: "Campamento de salud móvil",
+                descripcion: "Campamento de salud gratuito con chequeos médicos básicos, vacunación y consejería nutricional.",
+                categoria: "salud",
+                coordenadas: [-34.5998, -58.3754],
+                fecha: "2023-12-12",
+                usuario: "RobertoDiaz",
+                estado: "Planificado",
+                fotos: ["foto6.jpg"]
+            }
+        ];
+
+        // Categorías y colores
+        const categorias = {
+            infraestructura: { color: '#3498db', icon: 'fas fa-road' },
+            cultura: { color: '#e74c3c', icon: 'fas fa-palette' },
+            transporte: { color: '#f39c12', icon: 'fas fa-bus' },
+            educacion: { color: '#27ae60', icon: 'fas fa-graduation-cap' },
+            salud: { color: '#9b59b6', icon: 'fas fa-heartbeat' }
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicializar mapa
+            const map = L.map('map').setView([-34.6037, -58.3816], 13);
+            
+            // Añadir capa de OpenStreetMap
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+            
+            // Grupo de marcadores
+            const markers = L.layerGroup().addTo(map);
+            
+            // Añadir marcadores para cada hecho
+            hechos.forEach(hecho => {
+                const categoriaInfo = categorias[hecho.categoria];
+                const customIcon = L.divIcon({
+                    html: `<div class="custom-marker" style="background-color: ${categoriaInfo.color}">
+                             <i class="${categoriaInfo.icon}"></i>
+                           </div>`,
+                    className: 'custom-div-icon',
+                    iconSize: [40, 40],
+                    iconAnchor: [20, 40]
+                });
+                
+                const marker = L.marker(hecho.coordenadas, { icon: customIcon })
+                    .addTo(markers)
+                    .bindPopup(hecho.titulo, { className: 'map-popup' });
+                
+                // Evento al hacer clic en el marcador
+                marker.on('click', function() {
+                    showHechoDetails(hecho);
+                });
+                
+                // Almacenar referencia al hecho en el marcador
+                marker.hecho = hecho;
+            });
+            
+            // Elementos del DOM
+            const sidebar = document.getElementById('sidebar');
+            const sidebarContent = document.getElementById('sidebarContent');
+            const closeSidebar = document.getElementById('closeSidebar');
+            const searchInput = document.getElementById('searchInput');
+            const categoriaFilter = document.getElementById('categoria-filter');
+            const currentLocationBtn = document.querySelector('.current-location-btn');
+            
+            // Función para mostrar detalles del hecho
+            function showHechoDetails(hecho) {
+                const categoriaInfo = categorias[hecho.categoria];
+                
+                sidebarContent.innerHTML = `
+                    <div class="hecho-header">
+                        <div class="categoria-badge" style="background-color: ${categoriaInfo.color}">
+                            <i class="${categoriaInfo.icon}"></i>
+                            ${hecho.categoria.charAt(0).toUpperCase() + hecho.categoria.slice(1)}
+                        </div>
+                        <h3>${hecho.titulo}</h3>
+                    </div>
+                    
+                    <div class="hecho-details">
+                        <p>${hecho.descripcion}</p>
+                        
+                        <div class="detail-row">
+                            <div class="detail-item">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>Fecha: ${hecho.fecha}</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-user"></i>
+                                <span>Usuario: ${hecho.usuario}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-row">
+                            <div class="detail-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Coordenadas: ${hecho.coordenadas[0].toFixed(4)}, ${hecho.coordenadas[1].toFixed(4)}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="status-badge status-${hecho.estado.toLowerCase().replace(' ', '-')}">
+                            ${hecho.estado}
+                        </div>
+                    </div>
+                    
+                    ${hecho.fotos.length > 0 ? `
+                    <div class="hecho-photos">
+                        <h4>Fotos adjuntas</h4>
+                        <div class="photos-grid">
+                            ${hecho.fotos.map(foto => `
+                                <div class="photo-item">
+                                    <img src="../assets/images/${foto}" alt="Foto del hecho">
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    ` : ''}
+                    
+                    <div class="hecho-actions">
+                        <button class="action-btn">
+                            <i class="fas fa-edit"></i> Editar
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-share"></i> Compartir
+                        </button>
+                    </div>
+                `;
+                
+                sidebar.classList.add('active');
+            }
+            
+            // Cerrar sidebar
+            closeSidebar.addEventListener('click', function() {
+                sidebar.classList.remove('active');
+            });
+            
+            // Filtrar hechos por categoría
+            categoriaFilter.addEventListener('change', function() {
+                const categoria = this.value;
+                markers.eachLayer(function(marker) {
+                    if (!categoria || marker.hecho.categoria === categoria) {
+                        marker.addTo(map);
+                    } else {
+                        map.removeLayer(marker);
+                    }
+                });
+            });
+            
+            // Buscar hechos
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                markers.eachLayer(function(marker) {
+                    const hecho = marker.hecho;
+                    if (hecho.titulo.toLowerCase().includes(searchTerm) || 
+                        hecho.descripcion.toLowerCase().includes(searchTerm)) {
+                        marker.addTo(map);
+                    } else {
+                        map.removeLayer(marker);
+                    }
+                });
+            });
+            
+            // Ubicación actual
+            currentLocationBtn.addEventListener('click', function() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        map.setView([position.coords.latitude, position.coords.longitude], 15);
+                    });
+                } else {
+                    alert('La geolocalización no es soportada por este navegador.');
+                }
+            });
+            
+            // Ajustar tamaño del mapa cuando se redimensiona la ventana
+            window.addEventListener('resize', function() {
+                map.invalidateSize();
+            });
+        });
+    </script>
+</body>
+</html>
